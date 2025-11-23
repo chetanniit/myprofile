@@ -56,7 +56,7 @@ function addFloatingCode() {
     const javaSymbols = [
         '@SpringBoot', '@Autowired', '@Service', '@Repository',
         '@Entity', '@Transactional', 'public class', 'SessionFactory',
-        'Block', 'Hash', 'Chain', '⛓️', '🔗', '@Controller',
+        'Block', 'Hash', '@Controller',
         'Hibernate', 'JPA', 'Bean', 'Component', 'SmartContract'
     ];
     const sections = document.querySelectorAll('section');
