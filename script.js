@@ -10,6 +10,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            // Close mobile menu after clicking a link
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks && navLinks.classList.contains('mobile-active')) {
+                navLinks.classList.remove('mobile-active');
+            }
         }
     });
 });
@@ -149,7 +155,7 @@ window.addEventListener('scroll', function() {
     });
 });
 
-// Mobile menu toggle (for future enhancement)
+// Mobile menu toggle
 let mobileMenuCreated = false;
 function createMobileMenu() {
     if (mobileMenuCreated) return; // Prevent duplicate creation
@@ -158,31 +164,43 @@ function createMobileMenu() {
     const menuBtn = document.createElement('button');
     menuBtn.classList.add('mobile-menu-btn');
     menuBtn.innerHTML = '☰';
-    menuBtn.style.display = 'none';
-    
-    if (window.innerWidth <= 768) {
-        menuBtn.style.display = 'block';
-    }
+    menuBtn.setAttribute('aria-label', 'Toggle menu');
     
     nav.insertBefore(menuBtn, nav.firstChild);
     
     menuBtn.addEventListener('click', function() {
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('mobile-active');
+        
+        // Change icon based on state
+        if (navLinks.classList.contains('mobile-active')) {
+            menuBtn.innerHTML = '✕';
+        } else {
+            menuBtn.innerHTML = '☰';
+        }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const navLinks = document.querySelector('.nav-links');
+        const isClickInsideNav = nav.contains(event.target);
+        
+        if (!isClickInsideNav && navLinks.classList.contains('mobile-active')) {
+            navLinks.classList.remove('mobile-active');
+            menuBtn.innerHTML = '☰';
+        }
+    });
+    
+    // Handle resize to close menu when switching to desktop
+    window.addEventListener('resize', function() {
+        const navLinks = document.querySelector('.nav-links');
+        if (window.innerWidth > 768 && navLinks.classList.contains('mobile-active')) {
+            navLinks.classList.remove('mobile-active');
+            menuBtn.innerHTML = '☰';
+        }
     });
     
     mobileMenuCreated = true;
-    
-    // Handle resize to show/hide menu button
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
-            menuBtn.style.display = 'block';
-        } else {
-            menuBtn.style.display = 'none';
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.remove('mobile-active');
-        }
-    });
 }
 
 // Removed: createBinaryRain - code rain effect removed for cleaner UI

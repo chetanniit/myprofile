@@ -579,15 +579,8 @@ section {
 }
 
 .skills::after {
-    content: '⛓️';
-    position: absolute;
-    bottom: 10%;
-    right: 5%;
-    font-size: 8rem;
-    color: rgba(76, 175, 80, 0.03);
-    animation: rotate3d 15s linear infinite reverse;
-    filter: none;
-    z-index: 0;
+    content: '';
+    display: none;
 }
 
 @keyframes rotate3d {
@@ -726,17 +719,8 @@ section {
 }
 
 .experience::after {
-    content: '🔗⛓️🔗⛓️🔗⛓️🔗⛓️🔗⛓️🔗⛓️';
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 35px;
-    opacity: 0.03;
-    animation: blockchainMove 15s linear infinite reverse;
-    filter: none;
-    z-index: 0;
+    content: '';
+    display: none;
 }
 
 @keyframes blockchainMove {
@@ -1428,10 +1412,66 @@ body::before {
     animation: pulse 2s ease-in-out infinite;
 }
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.mobile-menu-btn:hover {
+    background: #ff8c42;
+    transform: scale(1.05);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block !important;
+    }
+
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        background: var(--white);
+        width: 70%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+        flex-direction: column;
+        padding: 2rem 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        gap: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+        padding: 0;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #e5e7eb;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background: var(--bg-light);
+        padding-left: 2.5rem;
+    }
+
+    .nav-links.mobile-active {
+        right: 0;
     }
 
     .hero-title {
