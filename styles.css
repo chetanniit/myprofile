@@ -69,6 +69,10 @@ nav .container {
     font-size: 1.75rem;
     font-weight: bold;
     color: var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .nav-links {
@@ -1433,6 +1437,11 @@ body::before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .logo {
+        font-size: 1.2rem;
+        max-width: calc(100% - 60px);
+    }
+
     .mobile-menu-btn {
         display: block !important;
     }
@@ -1551,6 +1560,11 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    .logo {
+        font-size: 1rem;
+        max-width: calc(100% - 60px);
+    }
+
     .hero {
         padding: 4rem 0;
     }
