@@ -1,0 +1,4 @@
+visitors.json
+node_modules/
+.env
+*.log

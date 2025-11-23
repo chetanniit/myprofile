@@ -1449,15 +1449,15 @@ body::before {
     .nav-links {
         position: fixed;
         top: 70px;
-        right: -100%;
+        left: -100%;
         background: var(--white);
         width: 70%;
         max-width: 300px;
         height: calc(100vh - 70px);
         flex-direction: column;
         padding: 2rem 0;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
         z-index: 1000;
         gap: 0;
     }
@@ -1480,7 +1480,7 @@ body::before {
     }
 
     .nav-links.mobile-active {
-        right: 0;
+        left: 0;
     }
 
     .hero-title {
